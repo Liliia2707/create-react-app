@@ -1,25 +1,31 @@
-import { Post } from "./components/Post/Post";
-import { Todo } from "./components/Todo/Todo";
+import { useEffect, useState } from "react";
+import { PostList } from "./components/PostList/PostList";
+import { TodoList } from "./components/TodoList/TodoList";
+import { UserList } from "./components/UserLisr/UserList";
+import { Product } from "./components/Product/Product";
 
 function App() {
-  const postData = {
-    title: 'Post number1',
-    description: '!!Hello World!!',
-    marked: true
-  }
-  const postData1 = {
-    title: 'Post number 2',
-    description: 'Bey World',
-    marked: false
-  }
+  const [value, setValue] = useState(Number(localStorage.getItem("item")) ?? 0);
+  const [toggle, setToggle] = useState(true);
+  useEffect(() => {
+    console.log("only for counter");
+    localStorage.setItem("item", value);
+  }, [value]);
 
-  return <div className="App">
-    <Post title={postData.title} description={postData.description} marked={postData.marked} />
-    <Post {...postData1} />
-    <Todo taskTitle="Бранденбургские ворота" taskDescripttion='Бранденбу́ргские воро́та (нем. Brandenburger Tor) — триумфальное сооружение в центре Берлина, столицы Германии. Единственные сохранившиеся из восемнадцати бывших городских ворот, главный символ города.' />
-    <Todo taskTitle="Триумфальная арка" taskDescripttion='Триумфальная арка (фр. Arc de triomphe de l’Étoile) — монумент в 8-м округе Парижа на площади Шарля де Голля (Звезды), возведённый в 1806—1836 годах по проекту архитектора французского ампира Жана-Франсуа Шальгрена. ' />
-  </div>
+  return (
+    <div className="App">
+      <Product />
+      <UserList />
 
+      <div>
+        <p>{value}</p>
+        <button onClick={() => setValue(value + 1)}>Click</button>
+        <button onClick={() => setToggle(!toggle)}>Toggle</button>
+        {toggle ? "a" : "b"}
+      </div>
+    </div>
+  );
 }
 
 export default App;
+
