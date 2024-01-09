@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { PostList } from "./components/PostList/PostList";
 import { TodoList } from "./components/TodoList/TodoList";
-import { UserList } from "./components/UserLisr/UserList";
+import { UserList } from "./components/UserList/UserList";
 import { Product } from "./components/Product/Product";
+import UserPage from "./pages/UserPage";
+import { TodoPage } from "./pages/TodoPage";
 
 function App() {
   const [value, setValue] = useState(Number(localStorage.getItem("item")) ?? 0);
@@ -14,8 +16,10 @@ function App() {
 
   return (
     <div className="App">
-      <Product />
-      <UserList />
+      {/* <Product /> */}
+      {/* <UserPage /> */}
+      {/* <PostList /> */}
+      <TodoPage />
 
       <div>
         <p>{value}</p>

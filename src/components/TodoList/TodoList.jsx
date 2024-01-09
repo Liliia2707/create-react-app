@@ -1,31 +1,12 @@
-import { useState } from "react";
-import { todos } from "../../utils/toDos";
+// import { useState } from "react";
 import { Todo } from "../Todo/Todo";
+import { toDos } from "../../utils/toDos";
 
-export const TodoList = () => {
-  const [todoList, setTodotList] = useState(todos);
-  console.log(todoList);
-  const changeDoneFlagHandler = (id) => {
-    // пройтись по массиву состояния, todoList
-    // проходимся по массиву (map)
-    // проверяем id элемента с id функции
-    // если id совпадает, меняем на противоположный, если нет, возвращаем объект
-    // результат заносим в переменную newtodolist
-    // используя функцию изменения состояния, меняем состояние на новый массив
-    const newtodolist = todoList.map((todo) =>
-      todo.id === id ? { ...todo, doneFlag: !todo.doneFlag } : todo
-    );
-    setTodotList(newtodolist);
-  };
-
+export const TodoList = ({ todoList }) => {
   return (
     <div>
       {todoList.map((todo) => (
-        <Todo
-          key={todo.id}
-          {...todo}
-          changeDoneFlagHandler={() => changeDoneFlagHandler(todo.id)}
-        />
+        <Todo key={todo.id} {...todo} />
       ))}
     </div>
   );
