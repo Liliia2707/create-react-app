@@ -1,26 +1,13 @@
-import classes from "./post.module.css";
-import { changeColor } from "../../utils/сhangeColor";
-import { useState } from "react";
+import { useContext } from "react";
+import { ApiContext } from "../../contexts";
 
-// сипользуем useState
-// слздать кнопку, которая будет менять цвет блока div
-// style={{background: color}}
-// в color задаем значение из useState
-// setState - меняет цвет
-
-export const Post = ({ title, text, img, marked, changeMarkedHandler }) => {
-  const [color, setColor] = useState(changeColor);
-
+export const Post = ({ id, title, body }) => {
+  const { handleDeletedPost } = useContext(ApiContext);
   return (
-    <div
-      style={{ background: color }}
-      className={marked ? classes.marked : classes.postContainer}
-    >
+    <div>
       <h1>{title}</h1>
-      <p>{text}</p>
-      <img src={img} alt="" />
-      {/* <button onClick={() => setColor(changeColor)}>Change Color</button> */}
-      <button onClick={changeMarkedHandler}>Marked</button>
+      <p>{body}</p>
+      <button onClick={() => handleDeletedPost(id)}>delete</button>
     </div>
   );
 };

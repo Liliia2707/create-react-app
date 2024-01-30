@@ -1,27 +1,15 @@
-// import { useState } from "react";
-// import classes from "./Todo.module.css";
+import { useDispatch } from "react-redux";
+import { changeTodo, deleteTodo } from "../../store/todoSlice";
 
-export const Todo = ({
-  taskTitle,
-  taskDescription,
-  doneFlag,
-  changeDoneFlagHandler,
-}) => {
-  // const [value, setValue] = useState(0);
+export const Todo = ({ id, taskTitle, doneFlag, taskDescription }) => {
+  const dispatch = useDispatch();
 
   return (
-    // <div
-    //   style={{ textDecoration: doneFlag ? "line-through" : "none" }}
-    //   className={`container ${classes.todoContainer}`}
-    // >
-    <div>
+    <div style={{ textDecoration: doneFlag ? "line-through" : "none" }}>
       <h1>{taskTitle}</h1>
       <p>{taskDescription}</p>
-      {/* <h2>{value}</h2> */}
-      {/* <button onClick={() => setValue(value + 1)}>+</button>
-      <button onClick={() => setValue(value - 1)}>-</button>
-      <button onClick={() => setValue(0)}>reset</button>
-      <button onClick={changeDoneFlagHandler}>toggle</button> */}
+      <button onClick={() => dispatch(changeTodo(id))}>toggle</button>
+      <button onClick={() => dispatch(deleteTodo(id))}>delete</button>
     </div>
   );
 };

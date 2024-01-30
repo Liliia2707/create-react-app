@@ -1,8 +1,8 @@
-// import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Todo } from "../Todo/Todo";
-import { toDos } from "../../utils/toDos";
 
-export const TodoList = ({ todoList }) => {
+export const TodoList = () => {
+  const todoList = useSelector((state) => state.todos.todos);
   return (
     <div>
       {todoList.map((todo) => (
