@@ -1,9 +1,21 @@
-// создать карточку юзера
-// чтобы отображала - firstName, age, gender, username, image
+import { useDispatch, useSelector } from "react-redux";
 
-export const User = ({ firstName, age, gender, username, image }) => {
+export const User = ({
+  id,
+  firstName,
+  age,
+  gender,
+  username,
+  image,
+  handleAddUser,
+  handleDeleteUser,
+}) => {
+  const color = useSelector((state) => state.color.color);
+  const dispatch = useDispatch();
   return (
-    <div>
+    <div style={{ background: color }}>
+      <button onClick={handleAddUser}>add friend</button>
+      <button onClick={handleDeleteUser}>delete friend</button>
       <p>{firstName}</p>
       <p>{age}</p>
       <p>{gender}</p>

@@ -1,9 +1,16 @@
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { changeColor, resetColor } from "../store/colorSlice";
+import { changeTheme } from "../store/themeSlice";
 import classes from "./Header.module.css";
 
 export const Header = () => {
+  const dispatch = useDispatch();
   return (
     <header>
+      <button onClick={() => dispatch(changeTheme())}>change theme</button>
+      <button onClick={() => dispatch(changeColor())}>change color</button>
+      <button onClick={() => dispatch(resetColor())}>reset color</button>
       <nav>
         <ul>
           <li>
